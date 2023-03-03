@@ -5,4 +5,7 @@ class MyUrl{
   static  String topNews="https://newsapi.org/v2/top-headlines?country=us";
   static String allNews="https://newsapi.org/v2/everything?q=bitcoin";
 
+
+  static List<String> category=['general','business', 'entertainment','health','science','sports','technology'];
+
 }

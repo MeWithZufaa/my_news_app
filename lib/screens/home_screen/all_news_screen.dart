@@ -10,42 +10,32 @@ class AllNewsScreen extends StatelessWidget {
   final _allNewsController=Get.put(AllNewsController());
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GridView.builder(
-        shrinkWrap: true,
-         // reverse: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: _allNewsController.newsList.length,
-          itemBuilder: (context,index){
-
-            final newsList=_allNewsController.newsList[index];
-           if(_allNewsController.isLoading.value || _allNewsController.hasError.value){
-             return const Text("Loading.....");
-           }else if(_allNewsController.newsList.isEmpty){
-             return const Center(child:CircularProgressIndicator(),);
-           }else{
-             return Column(
-               children: [
-
-                BuildImage(size: MediaQuery.of(context).size, imgUrl: newsList.urlToImage)
-
-
-               ],
-             );
-           }
-
-
-          }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-             crossAxisCount: 2,
-               childAspectRatio: 3/4,
-              mainAxisSpacing: 5,
-             crossAxisSpacing: 5,
-
-      ),
+    final size=MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+      child: SizedBox(
+        child:Obx(()=>GridView.builder(
+          shrinkWrap: true,
+          physics:const NeverScrollableScrollPhysics(),
+          gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 5.0,
+              mainAxisExtent: 220),
+          itemCount:_allNewsController.newsList.length,
+          itemBuilder: (BuildContext context, int index) {
+            final data=_allNewsController.newsList[index];
+            // build each item in the grid here
+            return BuildImage(
+              size: MediaQuery.of(context).size,
+              imgUrl: data.urlToImage,
+            );
+          },
+        ),)
 
 
       ),
-    ),);
+    );
   }
 }
