@@ -23,7 +23,6 @@ class TopNewsController extends GetxController {
       topNewsList.value=response;
       isLoading.value=false;
       hasError.value=false;
-      print(topNewsList.value);
     }catch(e){
       print("Error : $e");
       isLoading.value=false;

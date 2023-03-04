@@ -22,18 +22,11 @@ class AllNewsController extends GetxController{
     newsList.value=response;
     isLoading.value=false;
     hasError.value=false;
-    print("This is All news : ${newsList.value}");
-    print("This is in try $isLoading");
-    print("This is in try $hasError");
   }catch(e){
     print("Error : $e");
 
     isLoading.value=false;
     hasError.value=false;
-
-    print("This is in catch $isLoading");
-    print("This is in catch $hasError");
-
 
   }
 

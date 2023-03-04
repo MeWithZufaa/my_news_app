@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_news_app/screens/category/bbc_news_screen.dart';
 import 'package:my_news_app/screens/main_screen/main_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const MainScreen(),
+      home:  MainScreen(),
     );
   }
 }

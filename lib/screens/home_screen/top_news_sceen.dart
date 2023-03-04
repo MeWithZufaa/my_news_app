@@ -19,11 +19,11 @@ class TopNewsScreen extends StatelessWidget {
         elevation: 0,
         title: GetBuilder<TopNewsController>(
           init: TopNewsController(),
-          builder: (_newsController) {
-            if (_newsController.isLoading.value|| _newsController.hasError.value) {
-              return Text("Top Headline");
+          builder: (newsController) {
+            if (newsController.isLoading.value|| newsController.hasError.value) {
+              return const Text("Top Headline");
             } else {
-              final topHeadline = _newsController.topNewsList[0].title;
+              final topHeadline = newsController.topNewsList[0].title;
               return SizedBox(
                 height: 30,
                 child: Marqueer(
