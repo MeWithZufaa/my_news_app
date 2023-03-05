@@ -13,13 +13,12 @@ class GeneralNewsController extends GetxController {
   Future<void> fetchGeneralNews() async {
     try {
       isLoading(true);
-      final url = "${MyUrl.generalNews}&apiKey=${MyUrl.apiKey}";
+      final url = "${MyUrl.generalNews}&${MyUrl.apiKey}";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final Map<String, dynamic> json = jsonDecode(response.body);
 
         generalNewsList.value = json['articles'] as List;
-        print(generalNewsList.value);
       } else {
         throw Exception("Failed to load data");
       }

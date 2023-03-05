@@ -9,7 +9,7 @@ class ApiService{
   Future<List<TopNewsModel>>  getTopNews()async{
 
 
-    final url='${MyUrl.topNews}&apiKey=${MyUrl.apiKey}';
+    final url='${MyUrl.topNews}&${MyUrl.apiKey}';
     final response= await http.get(Uri.parse(url));
 
     if(response.statusCode==200){
@@ -24,7 +24,7 @@ class ApiService{
 
   Future<List<AllNewsModel>> getAllNews()async{
 
-    final url="${MyUrl.allNews}&apiKey=${MyUrl.apiKey}";
+    final url="${MyUrl.allNews}&${MyUrl.apiKey}";
     final response=await http.get(Uri.parse(url));
     if(response.statusCode==200){
       final jsonList=jsonDecode(response.body)['articles'] as List;

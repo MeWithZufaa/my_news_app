@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_news_app/controllers/bbc_news_controller.dart';
+import 'package:my_news_app/screens/details/news_details_screen.dart';
 import 'package:my_news_app/screens/view_all/bbc_all_news_screen.dart';
-import 'package:my_news_app/widgets/build_image.dart';
+import 'package:my_news_app/widgets/custom_card.dart';
 import 'package:my_news_app/widgets/date_time_helper.dart';
 import 'package:my_news_app/widgets/reusable_text.dart';
 
@@ -48,45 +49,25 @@ class BBCNewsScreen extends StatelessWidget {
                   final data = _bbcNewsController.bbcNewsList[index];
                   final timeAgo = DateTimeHelper.formatDateTime(
                       _bbcNewsController.bbcNewsList[index]["publishedAt"]);
-                  return Card(
-                    elevation: 4,
-                    child: Container(
-                      height: 100,
-                      width: size.width,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 120,
-                            child: ClipRRect(
-                                child: BuildImage(
-                              size: size,
-                              imgUrl: data['urlToImage'].toString(),
-                            )),
+                  return InkWell(
+                      onTap: (){
+
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewsDetailsScren(
+                              imageUrl: data['urlToImage'],
+                              title: data['title'],
+                              author: data['author'],
+                              dateTime: timeAgo,
+                              description: data['description'],
+                              content: data['content'],
+                            ),
                           ),
-                          Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  _bbcNewsController.bbcNewsList[index]
-                                      ['title'],
-                                  maxLines: 2,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(timeAgo),
-                              )
-                            ],
-                          ))
-                        ],
-                      ),
-                    ),
-                  );
+                        );
+                      },
+                      child: CustomCard(imageUrl: data['urlToImage'].toString(), title: data['title'].toString(), dateTime: timeAgo.toString()));
                 });
           }
         }),

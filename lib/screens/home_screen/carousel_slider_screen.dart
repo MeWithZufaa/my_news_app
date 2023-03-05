@@ -14,7 +14,7 @@ class CarouselSliderScreen extends StatelessWidget {
     return Obx((){
 
       if(_newsController.newsList.isEmpty){
-        return Center(child: CircularProgressIndicator(),);
+        return const Center(child: CircularProgressIndicator(),);
       }else {
 
         return CarouselSlider.builder(
@@ -31,8 +31,8 @@ class CarouselSliderScreen extends StatelessWidget {
               initialPage: 0,
               reverse: false,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval: const Duration(seconds: 3),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: false,)
         );

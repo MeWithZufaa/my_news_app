@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_news_app/controllers/all_news_controller.dart';
 import 'package:my_news_app/screens/view_all/view_all_news.dart';
 import 'package:my_news_app/widgets/build_image.dart';
+import 'package:my_news_app/widgets/custom_card.dart';
 import 'package:my_news_app/widgets/date_time_helper.dart';
 import 'package:my_news_app/widgets/reusable_text.dart';
 
@@ -45,37 +46,7 @@ class AllNewsScreen extends StatelessWidget {
                 itemBuilder: (context,index){
                   final data=_allNewsController.newsList[index];
                   final timeAgo=DateTimeHelper.formatDateTime(data.publishedAt);
-                  return Card(
-                    elevation: 4,
-                    child: Container(
-                      height: 100,
-                      width: size.width,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 100,
-                            width: 100,
-                            child: BuildImage(size: size,imgUrl:data.urlToImage.toString(),),
-                          ),
-                          Expanded(child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ReusableText(text: data.title.toString(),maxLines: 2,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ReusableText(text: timeAgo.toString()),
-                              ),
-
-
-                            ],))
-                        ],
-                      ),
-                    ),
-                  );
+                  return CustomCard(imageUrl: data.urlToImage.toString(), title: data.title.toString(), dateTime: timeAgo.toString());
 
                 }
             );

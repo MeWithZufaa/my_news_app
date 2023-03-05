@@ -18,7 +18,7 @@ class BBCNewsController extends GetxController{
 
     try{
       isLoading(true);
-      final url="${MyUrl.bbcnews}&apiKey=${MyUrl.apiKey}";
+      final url="${MyUrl.bbcnews}&${MyUrl.apiKey}";
 
       final response= await http.get(Uri.parse(url));
       print(response);
